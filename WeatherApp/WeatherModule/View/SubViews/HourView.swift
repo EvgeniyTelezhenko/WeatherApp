@@ -90,8 +90,8 @@ extension HourView: UICollectionViewDataSource {
                 if let cell = hourCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? HourViewCell{
                     let time = delegate.convertDateFromUTF(hour.dt)
                     let iconUrlString = "https://openweathermap.org/img/wn/\(hour.weather[0].icon)@2x.png"
-                    let temperature = String(hour.feelsLike)
-                    cell.setParameters(time: time, iconURLString: iconUrlString, temperature: temperature)
+                    let temperature = Int(hour.feelsLike)
+                    cell.setParameters(time: time, iconURLString: iconUrlString, temperature: "\(temperature) ℃")
                 }
             }
             return cell
