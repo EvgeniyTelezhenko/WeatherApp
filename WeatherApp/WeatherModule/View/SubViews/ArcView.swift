@@ -43,7 +43,6 @@ class ArcView: UIView {
         self.sunset = sunsetPercent
         self.dayPercentInOval = current
         super.init(frame: frame)
-        print(frame)
         self.backgroundColor = .clear
         clipsToBounds = false
 
@@ -60,7 +59,6 @@ class ArcView: UIView {
     
     @objc func animate(percentOfDay: CGFloat) {
         let imageCoordinates = calculateByPercent(percent: percentOfDay)
-        print(iconImageView?.frame)
         let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
 
         strokeEndAnimation.toValue = percentOfDay - 0.023
@@ -77,7 +75,7 @@ class ArcView: UIView {
         
         secondLayer?.mask!.add(strokeStartAnimation, forKey: "strokeStart")
         CATransaction.begin()
-       
+
         let picChangeXPositionAnimation = CABasicAnimation(keyPath: "position.x")
         picChangeXPositionAnimation.toValue = imageCoordinates.0
         picChangeXPositionAnimation.duration = 1
@@ -92,11 +90,9 @@ class ArcView: UIView {
         
         iconImageView?.layer.add(picChangeXPositionAnimation, forKey: "position.x")
         iconImageView?.layer.add(picChangeYPositionAnimation, forKey: "position.y")
-        print(iconImageView?.frame)
         CATransaction.setCompletionBlock({
             self.iconImageView?.frame.centerX = imageCoordinates.0
             self.iconImageView?.frame.centerY = imageCoordinates.1
-            print("FINISHED")
         })
         
         CATransaction.commit()
@@ -160,7 +156,7 @@ class ArcView: UIView {
             return iv
         }()
         
-     setIconImage(weatherStatusIconURL: weatherStatusIconURL)
+        setIconImage(weatherStatusIconURL: weatherStatusIconURL)
         
         self.addSubview(imageView)
     }
@@ -185,7 +181,6 @@ class ArcView: UIView {
             }
             
             let y1 = height * ( 1.0 + (firstUnderRoot).squareRoot())
-            print(y1)
             
             var secondUnderRoot = (1 - (pow(xCoordinate - width, 2) / pow(width, 2)))
             if secondUnderRoot < 0 {
@@ -193,7 +188,6 @@ class ArcView: UIView {
             }
             
             let y2 = height * ( 1 - sqrt(secondUnderRoot))
-            print(y2)
             if isFirst {
                 return y1
             }

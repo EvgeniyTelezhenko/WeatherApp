@@ -177,7 +177,6 @@ class CityWeatherViewController: UIViewController {
             oval.setIconImage(weatherStatusIconURL: self.viewModel.weatherModel!.signImage)
             
             let dates = self.viewModel.convertDateToDayPercent()
-            print("\(oval.current) до")
             if dates.current >= 0.75 {
                 oval.current = Float(dates.current) - 0.75
                 oval.dayPercentInOval = oval.current
@@ -185,7 +184,6 @@ class CityWeatherViewController: UIViewController {
                 oval.current =  Float(dates.current) + 0.25
                 oval.dayPercentInOval = oval.current
             }
-            print("\(oval.current) после")
             oval.animate(percentOfDay: CGFloat(oval.dayPercentInOval))
 
         }

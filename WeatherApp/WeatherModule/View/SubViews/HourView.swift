@@ -61,7 +61,6 @@ class HourView: UIView {
 extension HourView: UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(hourCollectionView.frame.width)
        return CGSize(width: (hourCollectionView.frame.width / 5 - (3 * Helpers.inset)) , height: hourCollectionView.frame.height)
     }
     
